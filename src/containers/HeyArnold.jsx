@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CharacterList from '../components/CharacterList/CharacterList';
+import Loading from '../components/Loading/Loading';
 
 const HeyArnold = () => {
   const [loading, setLoading] = useState(true);
@@ -10,7 +11,8 @@ const HeyArnold = () => {
       .then(res => res.json())
       .then(data => setData(data))
       .finally(() => setLoading(false));
-  });
+  }, []);
+  if(loading) return <Loading />;
   return (
     <CharacterList data={data}/>
   );
